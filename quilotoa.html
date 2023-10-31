@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/pictograma.png">
+    <title>Prototipo</title>
+    <!-- Archivos Bootstrap y CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Yellowtail%7COpen%20Sans%3A400%2C300%2C600%2C700%2C800"
+        media="screen" />
+    <!-- Archivos para customizar estilos -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css" media="screen" />
+    <link href="css/jquery.fancybox.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/mobile.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/settings.css" media="screen" />
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN8je171svdLgDxuR1rS8zmge9XoEMz0A"></script>
+
+    <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- Archivos para carrusel -->
+    <script type="text/javascript" src="js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="js/extensions/revolution.extension.video.min.js"></script>
+    <style>
+        /* Estilo inicial de la imagen */
+        .imagen-expansible {
+            max-width: 100%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        /* Estilo cuando la imagen está agrandada */
+        .imagen-expansible.active {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 999;
+        }
+
+        .video-box {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+
+        }
+
+        .video video {
+            width: 100%;
+            height: auto;
+        }
+
+        .iframe-container {
+            position: relative;
+            padding-bottom: 40.25%;
+            /* Esta es la relación de aspecto 16:9 (9 / 16 * 100%) */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .imagenE {
+
+            margin: 10px;
+            /* Agregar margen alrededor de las imágenes */
+
+            /* Reducir el tamaño máximo de las imágenes */
+        }
+
+        /* Estilo diferente para imágenes en dispositivos móviles */
+        @media (max-width: 600px) {
+            .col-xs-12 .imagenE {
+                width: 20%;
+            }
+        }
+
+        /* Estilo de la imagen con hover solo en pantallas pequeñas (col-xs-12) */
+        @media (max-width: 576px) {
+            .col-xs-12:hover .imagen-con-hover {
+                transform: scale(1.2);
+                /* Efecto de escala en hover */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--Inicio de cabecera-->
+    <header data-spy="affix" data-offset-top="1" class="clearfix">
+        <section class="toolbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 left_bar">
+                    </div>
+                    <div class="col-lg-6 ">
+                        <ul class="right-none pull-right company_info">
+                            <li><a href="#"><i class="fa fa-phone-square"></i> 032672-041</a></li>
+                            <li class="address"><a href="#"><span class="fa fa-map-marker"></span< /a> Parroquia
+                                        Zumbahua – Zona Centro</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="toolbar_shadow"></div>
+        </section>
+        <div class="bottom-header">
+            <div class="container">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle
+                                    navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                                <span class="icon-bar"></span> </button>
+                            <a href="#inicio"><img src="images/logo2.png" alt="" width="150"
+                                    style="margin-top: 21px;"></a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav pull-right">
+                                <li><a href="index.html">Inicio</a></li>
+                                <li><a href="index.html">Zumbahua</a></li>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                        data-toggle="dropdown">Atractivos
+                                        <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="active"><a href="quilotoa.html">Laguna de Quilotoa</a></li>
+                                        <li><a href="#">Cañón del Río Toachi</a></li>
+                                        <li><a href="#">Shalala</a></li>
+                                        <li><a href="#">Escalada Cocha Uma</a></li>
+                                        <li><a href="#">La Cueva del Condor</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="alojamiento.html">Alojamiento</a></li>
+                                <li><a href="#">Contactos</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--Header End-->
+
+    <div class="row" id="inicio">
+        <div class="">
+            <div class="video-box">
+                <div class="video">
+                    <video width="2000" autoplay muted id="miVideo">
+                        <source src="videos/test.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Fin Banner secundario-->
+
+    <section class="content" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <img src="images/quilotoabienvenida.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="content" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 left-content padding-left-none">
+                <div class="listing-slider">
+                    <section class="slider home-banner">
+                        <div class="flexslider" id="home-slider-canvas">
+                            <ul class="slides">
+                                <li data-thumb=""> <img src="images/botesremo.jpg" alt=""
+                                        data-full-image="images/botesremo.jpg" /> </li>
+                                <li data-thumb=""> <img src="images/camping.jpg" alt=""
+                                        data-full-image="images/camping.jpg" /> </li>
+                                <li data-thumb=""> <img src="images/cabalgatas.jpg" alt=""
+                                        data-full-image="images/cabalgatas.jpg" /> </li>
+                                <li data-thumb=""> <img src="images/artesania2.jpg" alt=""
+                                        data-full-image="images/artesania2.jpg" /> </li>
+                                <li data-thumb=""><img src="images/senderismo.jpg" alt=""
+                                        data-full-image="images/senderismo.jpg" /> </li>
+
+                            </ul>
+                        </div>
+                    </section>
+                    <section class="home-slider-thumbs">
+                        <div class="flexslider" id="home-slider-thumbs">
+                            <ul class="slides">
+                                <li data-thumb=""> <a href="#"><img src="images/botesremo.jpg" alt="" /></a> </li>
+                                <li data-thumb=""> <a href="#"><img src="images/camping.jpg" alt="" /></a> </li>
+                                <li data-thumb=""> <a href="#"><img src="images/cabalgatas.jpg" alt="" /></a> </li>
+                                <li data-thumb=""> <a href="#"><img src="images/artesania2.jpg" alt="" /></a> </li>
+                                <li data-thumb=""> <a href="#"><img src="images/senderismo.jpg" alt="" /></a> </li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="contenedor-imagen">
+                    <div class=""><img class="imagen-expansible" src="images/comollegar.jpg" alt="" id="imagen">
+                    </div>
+                </div>
+
+                <div class="contenedor-imagen2" style="margin-top: 60px;">
+                    <div class="video-box">
+                        <div class="video">
+                            <video width="800" autoplay muted id="miVideo2">
+                                <source src="videos/clima2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- BANNER-->
+    <section class="content" id="zumbahua">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <img src="images/lagoplayita1.jpg" alt="Que hacer en Zumbahua" class="">
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 left-content padding-left-none">
+                <div class="video-box">
+                    <div class="video">
+                        <video width="800" autoplay muted id="miVideo3">
+                            <source src="videos/PRECIOS Y HORARIOS.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="contenedor-imagen">
+                    <div class=""><img class="imagen-expansible" src="images/playitalago.jpg" alt="" id="imagen2">
+                    </div>
+                </div>
+                <div class="iframe-container" style="margin-top: 40px;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15957.478000663554!2d-78.9143658661119!3d-0.8594118306834903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d4ecf2f2a74419%3A0x92c280f1f5d7614c!2sLaguna%20de%20Quilotoa!5e0!3m2!1ses!2sec!4v1696339455842!5m2!1ses!2sec"
+                        frameborder="0" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <img src="images/hostaldestacado.jpg" alt="Que hacer en Zumbahua" class="">
+            </div>
+        </div>
+    </section>
+
+    <section class="content" style="margin-top: 40px;">
+        <section class="car-block-wrap">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="flip horizontal">
+                        <div class="card">
+                            <div class="face front"><img class="img-responsive" src="images/chukirawa.jpg"></div>
+                            <div class="face back">
+                                <a target="_blank"
+                                    href="https://www.booking.com/hotel/ec/hostal-chukirawa.es.html?aid=311839&label=hostal-chukirawa-xwLkJlQnoVTxkFMl4LQ3FgS388758435966%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-1212306956073%3Alp9069556%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9Ybz4KBg0DTFCp_luKAHRTJg&sid=dab7cc29b967bf0e871f603044274ec9&dest_id=900051383;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=1;hpos=1;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1697139324;srpvid=878389ae7952017f;type=total;ucfs=1&#hotelTmpl"><img
+                                        class="img-responsive" src="images/chukirawa.jpg" class="fancybox"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h4><a href="quilotoa.html">LAGUNA QUILOTOA</a></h4>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="flip horizontal">
+                        <div class="card">
+                            <div class="face front"><img class="img-responsive" src="images/alpa.jpg" alt=""></div>
+                            <div class="face back">
+                                <a target="_blank"
+                                    href="https://www.booking.com/hotel/ec/hostal-cabanas-quilotoa.es.html?aid=311839&label=hostal-chukirawa-xwLkJlQnoVTxkFMl4LQ3FgS388758435966%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-1212306956073%3Alp9069556%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9Ybz4KBg0DTFCp_luKAHRTJg&sid=dab7cc29b967bf0e871f603044274ec9&dest_id=900051383;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=2;hpos=2;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1697139512;srpvid=878389ae7952017f;type=total;ucfs=1&#hotelTmpl"><img
+                                        class="img-responsive" src="images/alpa.jpg" class="fancybox"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h4><a href="#">COCHA UMA</a></h4>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="flip horizontal">
+                        <div class="card">
+                            <div class="face front"><img class="img-responsive" src="images/mantitas.jpg" alt="">
+                            </div>
+                            <div class="face back">
+                                <a href="#"><img class="img-responsive" src="images/mantitas.jpg" class="fancybox"
+                                        alt="Conocer sitio"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h4><a href="#">SHALALA</a></h4>
+                </div>
+            </div>
+
+            </div>
+        </section>
+
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <img src="images/texthostales.jpg" alt="Que hacer en Zumbahua" class="">
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12 testimonials scroll_effect fadeInUp">
+                <div class="testimonial">
+                    <ul class="testimonial_slider">
+                        <li>
+                            <blockquote class="style1"><span style="margin-left: 50px;">
+                                    Con ganas de volver! Acampamos en la laguna y fue una experiencia excepcional.
+                                    Fuimos en bus y después tuvimos que andar un poco, merece la pena :)</span>
+                                <strong>RUBIN 305
+                                    - Madrid, España</strong>
+                            </blockquote>
+                        </li>
+                        <li>
+                            <blockquote class="style1"><span style="margin-left: 50px;">Laguna increíblemente preciosa
+                                    en el cráter de un volcán. Para llegar desde Quito nos demoramos 2:30hrs aprox, en
+                                    carro.</span> <strong>LUISARTURI
+                                    -Mexico, Mexico</strong> </blockquote>
+                        </li>
+                        <li>
+                            <blockquote class="style1"><span style="margin-left: 50px;">Un lugar que vale la pena
+                                    conocer. Ver está inmensidad de Laguna y saber que está entre las 10 o 15 mejores
+                                    del mundo, realmente te hace confirmar que si lo vale.</span> <strong>ARTURO205
+                                    - Lima, Peru</strong> </blockquote>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12 container2">
+                <img src="images/experiencia1.jpg" alt="Que hacer en Zumbahua" class="imagenE">
+                <img src="images/experiencia2.jpg" alt="Que hacer en Zumbahua" class="imagenE">
+                <img src="images/experiencia3.jpg" alt="Que hacer en Zumbahua" class="imagenE">
+            </div>
+        </div>
+    </section>
+
+    <section class="content" id="zumbahua">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <img src="images/infotransporte.jpg" alt="Que hacer en Zumbahua" class="imagen-con-hover">
+            </div>
+        </div>
+    </section>
+
+    <section class="content" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="card" >
+                        <div class="face back">
+                            <a target="_blank" href="https://www.rome2rio.com/es/s/Quito/Zumbahua-Ecuador"><img
+                                    class="img-responsive" src="images/busqueda.jpg" alt="Click aquí!" title="Click aquí!"></a>
+                        </div>
+                    </div>
+             
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="contenedor-imagen">
+                    <div class=""><img class="imagen-expansible" src="images/horariotrans.jpg" alt="" id="imagen3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                    <img src="images/gastrointro.jpg" alt="Gastronomía" class="imagen-con-hover">
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="featured-service clearfix padding-bottom-40 margin-top-30">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 scroll_effect fadeInUp">
+                        <div class="featured">
+                            <img src="images/habas.jpg" alt="Que hacer en Zumbahua" class="imagen-con-hover">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 scroll_effect fadeInUp">
+                        <div class="featured">
+                            <img src="images/caldo.jpg" alt="Que hacer en Zumbahua" class="imagen-con-hover">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 scroll_effect fadeInUp">
+                        <div class="featured">
+                            <img src="images/cuy.jpg" alt="Que hacer en Zumbahua" class="imagen-con-hover">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 scroll_effect fadeInUp">
+                        <div class="featured">
+                            <img src="images/borrego.jpg" alt="Que hacer en Zumbahua" class="imagen-con-hover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Inicio pie de página-->
+        <footer class="design_2" style="margin-top: 40px;">
+            <div class="container">
+                <div class="row">
+                    <div
+                        class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding-left-none md-padding-left-none sm-padding-left-15 xs-padding-left-15">
+                        <h4>Noticias</h4>
+                        <p>Suscribete a nuestro sitio web para recibir noticias.</p>
+                        <form method="post" action="#" class="form_contact">
+                            <input type="text" value="" name="MERGE0" placeholder="Email Address">
+                            <input type="button" value="Subscribe" class="md-button">
+                            <input type="hidden" name="u" value="">
+                            <input type="hidden" name="id" value="">
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    </div>
+                    <div
+                        class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding-right-none md-padding-right-none sm-padding-right-15 xs-padding-right-15">
+                        <h4>Contáctanos</h4>
+                        <div class="footer-contact">
+                            <ul>
+                                <li><i class="fa fa-map-marker"></i> <strong>Dirección:</strong> Parroquia Zumbahua –
+                                    Zona
+                                    Centro</li>
+                                <li><i class="fa fa-phone"></i> <strong>Teléfono:</strong>032672-041</li>
+                                <li><i class="fa fa-envelope"></i> <strong>Correo:</strong><a href="#">gadprz
+                                        914@hotmail.com</a></li>
+                            </ul>
+
+                            <i class="fa fa-location-arrow back_icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <div class="clearfix"></div>
+        <section class="copyright-wrap padding-bottom-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div
+                            class="logo-footer margin-bottom-10 md-margin-bottom-10 sm-margin-bottom-10 xs-margin-bottom-10">
+                            <a href="index.html"><img src="images/logo2.png" alt="" width="200" height="350"></a>
+                        </div>
+                        <p>Copyright &copy; 2023 Stalyn Guanoluisa. Todos los derechos reservados.</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top: 20px;">
+                        <a href="#">
+                            <image src="images/face.png" width="50" height="90" />
+                        </a>
+                        <a href="#">
+                            <image src="images/what.png" width="50" height="90" />
+                        </a>
+                        <a href="#">
+                            <image src="images/insta.png" width="50" height="90" />
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="back_to_top"> <img src="images/arrow-up.png" alt="scroll up" /> </div>
+        <!--Archivos Bootstrap y JavaScript -->
+        <script src="js/retina.js"></script>
+        <script type="text/javascript" src="js/jquery.parallax.js"></script>
+        <script type="text/javascript" src="js/jquery.inview.min.js"></script>
+        <script src="js/main.js"></script>
+        <script type="text/javascript" src="js/jquery.fancybox.js"></script>
+        <script src="js/modernizr.custom.js"></script>
+        <script defer src="js/jquery.flexslider.js"></script>
+        <script src="js/jquery.bxslider.js" type="text/javascript"></script>
+
+        <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="js/jquery.easing.js"></script>
+</body>
+
+</html>
+<script>
+     $(document).ready(function () {
+        $("#inicio").on('click', function (event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+                var hash = this.hash;
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function () {
+                    window.location.hash = hash;
+                });
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        var video = $('#miVideo')[0]; // Obtén el elemento de video
+        var video2 = $('#miVideo2')[0]; // Obtén el elemento de video
+        var video3 = $('#miVideo3')[0]; // Obtén el elemento de video
+        video.loop = true; // Habilita la reproducción en bucle
+        video2.loop = true; // Habilita la reproducción en bucle
+        video3.loop = true; // Habilita la reproducción en bucle
+
+        // Agrega un evento "ended" para reiniciar el video
+        video.addEventListener('ended', function () {
+            this.currentTime = 0; // Reinicia al inicio
+            this.play(); // Inicia la reproducción nuevamente
+        });
+
+        video2.addEventListener('ended', function () {
+            this.currentTime = 0; // Reinicia al inicio
+            this.play(); // Inicia la reproducción nuevamente
+        });
+        video3.addEventListener('ended', function () {
+            this.currentTime = 0; // Reinicia al inicio
+            this.play(); // Inicia la reproducción nuevamente
+        });
+
+        // Inicia la reproducción del video
+        video.play();
+        video2.play();
+        video3.play();
+    });
+
+    // Obtén la imagen por su ID
+    var imagen = document.getElementById('imagen');
+    var imagen2 = document.getElementById('imagen2');
+    var imagen3 = document.getElementById('imagen3');
+
+    // Agrega un event listener para el clic
+    imagen.addEventListener('click', function () {
+        // Toggle (agrega o quita) la clase 'active' para cambiar el tamaño
+        this.classList.toggle('active');
+    });
+
+    imagen2.addEventListener('click', function () {
+        // Toggle (agrega o quita) la clase 'active' para cambiar el tamaño
+        this.classList.toggle('active');
+    });
+
+    imagen3.addEventListener('click', function () {
+        // Toggle (agrega o quita) la clase 'active' para cambiar el tamaño
+        this.classList.toggle('active');
+    });
+</script>
